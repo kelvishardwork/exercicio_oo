@@ -28,16 +28,31 @@ include "ClienteControle.php";
         <tr>
             <th>Indice</th>
             <th>Nome</th>
+            <th>Tipo de Cliente</th>
+            <th>Importância</th>
             <th>Ações</th>
         </tr>
         </thead>
         <tbody>
         <?php foreach ($array as $cliente) : ?>
+            <?php
+
+            ?>
             <tr>
-                <td><?= $cliente->id ?></td>
-                <td><?= $cliente->nome ?></td>
-                <td><a href="detalhes.php?id=<?= $cliente->id ?>">detalhes</a></td>
+                <td><?= $cliente->getId(); ?></td>
+                <td><?= $cliente->getNome(); ?></td>
+                <td><?= $cliente->getTipoCliente(); ?></td>
+                <td><?php for ($i = 1; $i <= 5; $i++): ?>
+                        <?php if ($i <= $cliente->getClassificacao()): ?>
+                        <img src="./img/classificacao.png" alt=""/>
+                        <?php else: ?>
+                            <img src="./img/classificacao-disable.png" alt=""/>
+                        <?php endif; ?>
+                    <?php endfor; ?>
+                </td>
+                <td><a href="detalhes.php?id=<?= $cliente->getId(); ?>">detalhes</a></td>
             </tr>
+
         <?php endforeach; ?>
         </tbody>
     </table>

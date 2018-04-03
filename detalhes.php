@@ -4,7 +4,7 @@ $id = $_GET['id'];
 $clienteEncontrado = '';
 if ($id) {
     foreach ($array as $cliente) {
-        if ($cliente->id == $id)
+        if ($cliente->getId() == $id)
             $clienteEncontrado = $cliente;
     }
 }
@@ -29,12 +29,21 @@ if ($id) {
             <?php if ($clienteEncontrado): ?>
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title"># <?= $clienteEncontrado->id ?> - <?= $clienteEncontrado->nome ?></h5>
-                        <p class="card-text">Id: <?= $clienteEncontrado->id ?></p>
-                        <p class="card-text">Nome: <?= $clienteEncontrado->nome ?></p>
-                        <p class="card-text">Sobrenome: <?= $clienteEncontrado->sobrenome ?></p>
-                        <p class="card-text">CPF: <?= $clienteEncontrado->cpf ?></p>
-                        <p class="card-text">Endereco: <?= $clienteEncontrado->endereco ?></p>
+                        <h5 class="card-title"># <?= $clienteEncontrado->getId(); ?>
+                            - <?= $clienteEncontrado->getNome(); ?></h5>
+                        <h5 class="card-title"><?php for ($i = 1; $i <= 5; $i++): ?>
+                                <?php if ($i <= $clienteEncontrado->getClassificacao()): ?>
+                                    <img src="./img/classificacao.png" alt=""/>
+                                <?php else: ?>
+                                    <img src="./img/classificacao-disable.png" alt=""/>
+                                <?php endif; ?>
+                            <?php endfor; ?></h5>
+                        <p class="card-text">Id: <?= $clienteEncontrado->getId(); ?></p>
+                        <p class="card-text">Tipo de Cliente: <?= $clienteEncontrado->getTipoCliente(); ?></p>
+                        <p class="card-text">Nome: <?= $clienteEncontrado->getNome(); ?></p>
+                        <p class="card-text">Sobrenome: <?= $clienteEncontrado->getSobrenome(); ?></p>
+                        <p class="card-text">CPF: <?= $clienteEncontrado->getCpf(); ?></p>
+                        <p class="card-text">Endereco: <?= $clienteEncontrado->getEndereco(); ?></p>
                         <a href="index.php" class="btn btn-primary"><b>Voltar para Lista</b></a>
                     </div>
                 </div>
